@@ -1,6 +1,5 @@
 #include <iostream>
 #include <algorithm>
-using namespace std;
 
 struct Node {
     int key;
@@ -39,8 +38,8 @@ Node* rightRotate(Node* y) {
     x->right = y;
     y->left = T2;
 
-    y->height = max(height(y->left), height(y->right)) + 1;
-    x->height = max(height(x->left), height(x->right)) + 1;
+    y->height = std::max(height(y->left), height(y->right)) + 1;
+    x->height = std::max(height(x->left), height(x->right)) + 1;
 
     y->size = size(y->left) + size(y->right) + 1;
     x->size = size(x->left) + size(x->right) + 1;
@@ -55,8 +54,8 @@ Node* leftRotate(Node* x) {
     y->left = x;
     x->right = T2;
 
-    x->height = max(height(x->left), height(x->right)) + 1;
-    y->height = max(height(y->left), height(y->right)) + 1;
+    x->height = std::max(height(x->left), height(x->right)) + 1;
+    y->height = std::max(height(y->left), height(y->right)) + 1;
 
     x->size = size(x->left) + size(x->right) + 1;
     y->size = size(y->left) + size(y->right) + 1;
@@ -81,12 +80,11 @@ Node* insert(Node* node, int key) {
     else 
         return node;
 
-    node->height = 1 + max(height(node->left), height(node->right));
+    node->height = 1 + std::max(height(node->left), height(node->right));
     node->size = 1 + size(node->left) + size(node->right);
 
     int balance = getBalance(node);
 
-    
     if (balance > 1 && key < node->left->key)
         return rightRotate(node);
 
@@ -123,7 +121,7 @@ Node* kthSmallest(Node* root, int k) {
 void inorder(Node* root) {
     if (root != nullptr) {
         inorder(root->left);
-        cout << root->key << " ";
+        std::cout << root->key << " ";
         inorder(root->right);
     }
 }
@@ -138,16 +136,16 @@ void inorder(Node* root) {
 //         root = insert(root, arr[i]);
 //     }
     
-//     cout << "Inorder traversal of the constructed AVL tree is: ";
+//     std::cout << "Inorder traversal of the constructed AVL tree is: ";
 //     inorder(root);
-//     cout << endl;
+//     std::cout << std::endl;
     
 //     int k = 3;
 //     Node* kth = kthSmallest(root, k);
 //     if (kth != nullptr) {
-//         cout << "The " << k << "-th smallest element is " << kth->key << endl;
+//         std::cout << "The " << k << "-th smallest element is " << kth->key << std::endl;
 //     } else {
-//         cout << "Invalid k" << endl;
+//         std::cout << "Invalid k" << std::endl;
 //     }
     
 //     return 0;
