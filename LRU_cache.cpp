@@ -1,5 +1,4 @@
 #include <unordered_map>
-using namespace std;
 
 template <typename T>
 
@@ -14,7 +13,7 @@ private:
         Node* next=nullptr;
     };
     size_t size_;
-    unordered_map<size_t, Node*> keys;
+    std::unordered_map<size_t, Node*> keys;
     Node *head=nullptr, *tail=nullptr;
 
     void move_to_tail(Node* node) 
